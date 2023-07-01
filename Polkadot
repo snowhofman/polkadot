@@ -1,0 +1,28 @@
+// Пример контракта на Ink! для Polkadot
+
+use ink_lang::contract;
+
+#[contract]
+mod my_contract {
+    #[ink(storage)]
+    struct MyContract {
+        greeting: String,
+    }
+
+    impl MyContract {
+        #[ink(constructor)]
+        fn new(&mut self, greeting: String) {
+            self.greeting = greeting;
+        }
+
+        #[ink(message)]
+        fn change_greeting(&mut self, new_greeting: String) {
+            self.greeting = new_greeting;
+        }
+
+        #[ink(message)]
+        fn get_greeting(&self) -> String {
+            self.greeting.clone()
+        }
+    }
+}
